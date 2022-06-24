@@ -689,6 +689,9 @@ func getHaves(
 		}
 
 		err = getHavesFromRef(ref, remoteRefs, s, haves)
+		if err == plumbing.ErrObjectNotFound {
+			continue
+		}
 		if err != nil {
 			return nil, err
 		}
